@@ -30,7 +30,7 @@ To run this sample you will need:
 - A Windows 8.1 64-bit machine with minimum 4 GB of RAM if you want to run Windows Table/PC apps. Processor that supports [Client Hyper-V and Second Level Address Translation (SLAT)](https://msdn.microsoft.com/en-us/library/windows/apps/ff626524(v=vs.105).aspx#hyperv) is also required if you want to run Windows Phone 8.1 app on emulator.
 - A Mac OSX 10.8.5/Mountain Lion or higher machine with 4 GB of RAM if you want to run iOS app.
 - To run Android app you can choose among
-  - Mac OSX 10.8.5/Mountain Lion or higher machine with 4 GB of RAM 
+  - Mac OSX 10.8.5/Mountain Lion or higher machine with 4 GB of RAM
   - Linux machine (GNOME or KDE desktop) with 4 GB of RAM (tested on Ubuntu® 14.04)
   - Windows 8 or higher machine with 4 GB of RAM
 - [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -47,20 +47,20 @@ Platform specific development tools depending on platform(s) you want to run sam
 - To build and run for iOS
 
   Xcode 5.x or greater. Download it at http://developer.apple.com/downloads or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-  
+
   [ios-sim](https://www.npmjs.org/package/ios-sim) – allows you to launch iOS apps into the iOS Simulator from the command line (can be easily installed via the terminal: `npm install -g ios-sim`)
 
 - To build and run application for Android
 
   Install [Java Development Kit (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) or later. Make sure `JAVA_HOME` (Environment Variable) is correctly set according to JDK installation path (for example C:\Program Files\Java\jdk1.7.0_75).
-  
+
   Install [Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools) and add `<android-sdk-location>\tools` location (for example, C:\tools\Android\android-sdk\tools) to your `PATH` Environment Variable.
 
-  Open Android SDK Manager (for example, via terminal: `android`) and install 
+  Open Android SDK Manager (for example, via terminal: `android`) and install
     - *Android 5.1.1 (API 22)* platform SDK
     - *Android SDK Build-tools* version 19.1.0 or higher
     - *Android Support Repository* (Extras)
-    
+
   Android sdk doesn't provide any default emulator instance. Create a new one by running `android avd` from terminal and then selecting *Create...* if you want to run Android app on emulator. Recommended *Api Level* is 19 or higher, see [AVD Manager](http://developer.android.com/tools/help/avd-manager.html) for more information about Android emulator and creation options.
 
 ### Step 1: Register the sample with your Azure Active Directory tenant
@@ -74,7 +74,7 @@ To use this sample you will need a Microsoft Azure Active Directory Tenant. If y
 5. In the drawer, click Add.
 6. Click "Add an application my organization is developing".
 7. Enter a friendly name for the application, for example "AADGraphClient", select "Native Client Application", and click next.
-8. Enter a Redirect Uri value of your choosing and of form http://AADGraphClient. NOTE: there are certain platform specific features that can only be leveraged by using Redirect Uri values in specific formats. We will add guidance about this soon. 
+8. Enter a Redirect Uri value of your choosing and of form http://AADGraphClient. NOTE: there are certain platform specific features that can only be leveraged by using Redirect Uri values in specific formats. We will add guidance about this soon.
 9. While still in the Azure portal, click the Configure tab of your application.
 10. Find the Client ID value and copy it aside, you will need this later when configuring your application.
 11. In the Permissions to Other Applications configuration section, ensure that "Access your organization's directory" and "Enable sign-on and read user's profiles" are selected under "Delegated permissions" for Azure Active Directory. Save the configuration.
@@ -90,7 +90,7 @@ From your shell or command line:
 
 ### Step 4: Create new Apache Cordova application
 
-`cordova create AADGraphSample --copy-from="NativeClient-GraphAPI-Cordova/AADGraphClient"`
+`cordova create AADGraphSample --copy-from="active-directory-cordova-graphapi/AADGraphClient"`
 
 `cd AADGraphSample`
 
@@ -101,15 +101,6 @@ From your shell or command line:
 `cordova platform add ios`
 
 `cordova platform add windows`
-
-__Note__: In case if you have a Visual Studio 2015 Preview installed you may have issues with project packaging for Windows related to MSBuild v.14 issue.
-You can workaround this issue by using patched cordova-windows with MSBuild reverted to v.12:
-
-* Instead of `cordova platform add windows` use
-* `cd ..`
-* `git clone -b msbuild14-issue https://github.com/MSOpenTech/cordova-windows`
-* `cd AADGraphSample`
-* `cordova platform add ..\cordova-windows`
 
 ### Step 6:  Add required plugins to your cordova app
 * `cordova plugin add ../azure-activedirectory-cordova-plugin-graph`
@@ -122,7 +113,7 @@ You can workaround this issue by using patched cordova-windows with MSBuild reve
  2. Find the `tenantName` variable and replace its value with the Tenant (Azure Active Directory) name from the Azure portal.
  3. Find the `authority` variable and replace its value' part after `https://login.windows.net/` with the Tenant (Azure Active Directory) name from the Azure portal.
  3. Find the `appId` variable and replace its value with the Client Id assigned to your app from the Azure portal.
- 4. Find the `redirectUrl` variable and replace the value with the redirect Uri you registerd in the Azure portal.
+ 4. Find the `redirectUrl` variable and replace the value with the redirect Uri you registered in the Azure portal.
 
 ```javascript
     .value('tenantName', 'testlaboratory.onmicrosoft.com')
@@ -136,7 +127,7 @@ You can workaround this issue by using patched cordova-windows with MSBuild reve
  1. To build and run Windows Tablet/PC application version
 
    `cordova run windows`
-   
+
    __Note__: During first run you may be asked to sign in for a developer license. See [Developer license]( https://msdn.microsoft.com/en-us/library/windows/apps/hh974578.aspx) for more details.
 
    #### Using ADFS/SSO
@@ -159,23 +150,23 @@ You can workaround this issue by using patched cordova-windows with MSBuild reve
    Use `cordova run windows --list -- --phone` to see all available targets and `cordova run windows --target=<target_name> -- --phone` to run application on specific device or emulator (for example,  `cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`).
 
  3. To build and run on Android device
- 
+
    To run on connected device: `cordova run android --device`
-  
+
    To run on default emulator: `cordova emulate android`
 
    __Note__: Make sure you've created emulator instance using *AVD Manager* as it is showed in *Prerequisites* section.
 
    Use `cordova run android --list` to see all available targets and `cordova run android --target=<target_name>` to run application on specific device or emulator (for example,  `cordova run android --target="Nexus4_emulator"`).
- 
+
  4. To build and run on iOS device
- 
+
    To run on connected device: `cordova run ios --device`
 
    To run on default emulator: `cordova emulate ios`
 
    __Note__: Make sure you have `ios-sim` package installed to run on emulator. See *Prerequisites* section for more details.
-   
+
     Use `cordova run ios --list` to see all available targets and `cordova run ios --target=<target_name>` to run application on specific device or emulator (for example,  `cordova run android --target="iPhone-6"`).
 
 Use `cordova run --help` to see additional build and run options.
